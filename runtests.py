@@ -10,9 +10,13 @@ settings.configure(
     USE_TZ=True,
 )
 
-if __name__ == "__main__":
+
+def runtests():
     django.setup()
-    TestRunner = get_runner(settings)
-    test_runner = TestRunner()
+    test_class = get_runner(settings)
+    test_runner = test_class()
     failures = test_runner.run_tests(['ems_client'])
     sys.exit(bool(failures))
+
+if __name__ == "__main__":
+    runtests()

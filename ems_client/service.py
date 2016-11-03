@@ -1,11 +1,11 @@
 """
 This module exposes EMS Service methods
 """
+import re
 from django.conf import settings
 from ems_client import EMSAPI, EMSAPIException
 from os.path import dirname, realpath
 from lxml import etree
-from restclients.dao_implementation.mock import convert_to_platform_safe
 from models import *
 from dateutil import parser
 
@@ -16,7 +16,7 @@ class Service(EMSAPI):
         if getattr(settings, 'EMS_API_MOCKDATA', False):
             cwd = dirname(realpath(__file__))
             wsdl_url = "file://%s/mock/file%s" % (
-                cwd, convert_to_platform_safe(wsdl_url))
+                cwd, re.sub('[?|<>=:*,;+&"@$]', '_', wsdl_url))
         else:
             wsdl_url = '%s%s' % (settings.EMS_API_HOST, wsdl_url)
 
