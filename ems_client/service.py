@@ -132,7 +132,7 @@ class Service(EMSAPI):
         return details
 
     def get_bookings(self, start_date, end_date,
-                    statuses=None, event_types=None):
+                     statuses=None, event_types=None):
         data = self._data_from_xml("Bookings", self._request(
             'GetBookings', {
                 'StartDate': start_date,
