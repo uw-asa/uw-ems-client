@@ -13,7 +13,7 @@ from dateutil import parser
 class Service(EMSAPI):
     def __init__(self):
         wsdl_url = '/EMSAPI/Service.asmx?WSDL'
-        if getattr(settings, 'EMS_API_MOCKDATA', False):
+        if not getattr(settings, 'EMS_API_HOST', False):
             cwd = dirname(realpath(__file__))
             wsdl_url = "file://%s/mock/file%s" % (
                 cwd, re.sub('[?|<>=:*,;+&"@$]', '_', wsdl_url))

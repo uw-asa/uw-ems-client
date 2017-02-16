@@ -26,7 +26,7 @@ class EMSAPI(object):
         self._api = Client(options.get('wsdl'), cache=cache)
         self._api.set_options(cachingpolicy=0)
 
-        if getattr(settings, 'EMS_API_MOCKDATA', False):
+        if not getattr(settings, 'EMS_API_HOST', False):
             self._data = self._mock
         else:
             self._data = self._live

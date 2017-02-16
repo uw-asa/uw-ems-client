@@ -6,8 +6,7 @@ class ServiceTests(TestCase):
 
     def setUp(self):
         if not hasattr(self, '_api'):
-            with self.settings(EMS_API_MOCKDATA=True):
-                self._api = Service()
+            self._api = Service()
 
     def test_apiversion(self):
         version = self._api.get_api_version()
@@ -25,8 +24,8 @@ class ServiceTests(TestCase):
         self.assertGreaterEqual(len(buildings), 3)
 
     def test_event_types(self):
-        event_types = self._api.get_buildings()
-        self.assertGreaterEqual(len(event_types), 0)
+        event_types = self._api.get_event_types()
+        self.assertGreaterEqual(len(event_types), 3)
 
     def test_rooms(self):
         rooms = self._api.get_all_rooms()
