@@ -9,6 +9,7 @@ from suds.cache import ObjectCache
 from ems_client.mock import EMSMockData
 import sys
 import os
+from common_tools.imports import load_object_by_name
 
 
 class EMSAPIException(Exception):
@@ -25,6 +26,9 @@ class EMSAPI(object):
         cache = ObjectCache(cache_path, days=1)
         self._api = Client(options.get('wsdl'), cache=cache)
         self._api.set_options(cachingpolicy=0)
+        if hasattr(settings, 'EMS_API_TRANSPORT_CLASS'):
+            transport = load_object_by_name(settings.EMS_API_TRANSPORT_CLASS)
+            self._api.set_options(transport=transport())
 
         if not getattr(settings, 'EMS_API_HOST', False):
             self._data = self._mock
