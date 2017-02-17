@@ -1,6 +1,7 @@
 """
 Base module to support exposing EMS SOAP Service methods
 """
+from importlib import import_module
 from django.conf import settings
 from logging import getLogger
 from suds.client import Client
@@ -9,7 +10,13 @@ from suds.cache import ObjectCache
 from ems_client.mock import EMSMockData
 import sys
 import os
-from common_tools.imports import load_object_by_name
+
+
+def load_object_by_name(object_name):
+    """Load an object from a module by name"""
+    mod_name, attr = object_name.rsplit('.', 1)
+    mod = import_module(mod_name)
+    return getattr(mod, attr)
 
 
 class EMSAPIException(Exception):
