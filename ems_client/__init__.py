@@ -29,6 +29,8 @@ class EMSAPI(object):
         if hasattr(settings, 'EMS_API_TRANSPORT_CLASS'):
             transport = load_object_by_name(settings.EMS_API_TRANSPORT_CLASS)
             self._api.set_options(transport=transport())
+            self._api.set_options(
+                location='%s/EMSAPI/Service.asmx' % settings.EMS_API_HOST)
 
         if not getattr(settings, 'EMS_API_HOST', False):
             self._data = self._mock
