@@ -1,7 +1,6 @@
 """
 This module exposes EMS Service methods
 """
-import re
 from django.conf import settings
 from ems_client import EMSAPI, EMSAPIException
 from os.path import dirname, realpath
@@ -12,17 +11,14 @@ from dateutil import parser
 
 class Service(EMSAPI):
     def __init__(self):
-        wsdl_url = '/EMSAPI/Service.asmx?WSDL'
-        if not getattr(settings, 'EMS_API_HOST', False):
-            cwd = dirname(realpath(__file__))
-            wsdl_url = "file://%s/mock/file%s" % (
-                cwd, re.sub('[?|<>=:*,;+&"@$]', '_', wsdl_url))
+        if hasattr(settings, 'EMS_API_HOST'):
+            wsdl_url = '%s/EMSAPI/Service.asmx?WSDL' % settings.EMS_API_HOST
         else:
-            wsdl_url = '%s%s' % (settings.EMS_API_HOST, wsdl_url)
+            wsdl_url = 'file://%s/mock/file/EMSAPI/Service.asmx_WSDL' % (
+                dirname(realpath(__file__)))
 
-        EMSAPI.__init__(self, {
-            'wsdl': wsdl_url
-        })
+        super(Service, self).__init__({'wsdl': wsdl_url})
+
         self._port = 'ServiceSoap'
 
     @staticmethod
