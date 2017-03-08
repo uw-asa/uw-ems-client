@@ -3,6 +3,7 @@ env:
   - PIP_PKGS="Django"
   - PIP_PKGS="Django==1.8"
 install:
-  - pip install $PIP_PKGS -e .
+  - pip install pep8 $PIP_PKGS -e .
 script:
+  - pep8 ems_client
   - python runtests.py
