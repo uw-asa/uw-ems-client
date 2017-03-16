@@ -30,14 +30,14 @@ class EMSAPI(object):
     def __init__(self, options={}):
         self._log = getLogger('ems_client')
         cache_path = "/tmp/{0}-suds".format(os.getuid())
-        cache = ObjectCache(cache_path, days=1)
-        self._api = Client(options.get('wsdl'), cache=cache)
-        self._api.set_options(cachingpolicy=0)
+        client_opts = {'cache': ObjectCache(cache_path, days=1)}
         if hasattr(settings, 'EMS_API_TRANSPORT_CLASS'):
             transport = load_object_by_name(settings.EMS_API_TRANSPORT_CLASS)
-            self._api.set_options(transport=transport())
-            self._api.set_options(
-                location='%s/EMSAPI/Service.asmx' % settings.EMS_API_HOST)
+            client_opts['transport'] = transport()
+            client_opts['location'] = '%s/EMSAPI/Service.asmx' % (
+                settings.EMS_API_HOST)
+        self._api = Client(options.get('wsdl'), **client_opts)
+        self._api.set_options(cachingpolicy=0)
 
         if not getattr(settings, 'EMS_API_HOST', False):
             self._data = self._mock
