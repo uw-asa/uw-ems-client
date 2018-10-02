@@ -3,7 +3,7 @@ This module exposes EMS Service methods
 """
 from django.conf import settings
 from ems_client import EMSAPI, EMSAPIException
-from os.path import dirname, realpath
+from os.path import dirname, normpath, realpath
 from lxml import etree
 from ems_client.models import *
 from dateutil import parser
@@ -14,8 +14,9 @@ class Service(EMSAPI):
         if hasattr(settings, 'EMS_API_HOST'):
             wsdl_url = '%s/EMSAPI/Service.asmx?WSDL' % settings.EMS_API_HOST
         else:
-            wsdl_url = 'file://%s/mock/file/EMSAPI/Service.asmx_WSDL' % (
-                dirname(realpath(__file__)))
+            wsdl_url = normpath(
+                'file://%s/mock/file/EMSAPI/Service.asmx_WSDL' % (
+                    dirname(realpath(__file__))))
 
         super(Service, self).__init__({'wsdl': wsdl_url})
 
