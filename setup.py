@@ -8,8 +8,15 @@ setup(
         'Django',
         'lxml',
         'python-dateutil',
-        'suds',
     ],
+    extras_require={
+        ':python_version < "3"': [
+            'suds',
+        ],
+        ':python_version >= "3"': [
+            'suds-py3',
+        ],
+    },
     license='Apache License, Version 2.0',
     test_suite='runtests.runtests',
 )
