@@ -5,7 +5,7 @@ from django.conf import settings
 from ems_client import EMSAPI, EMSAPIException
 from os.path import dirname, realpath
 from lxml import etree
-from models import *
+from ems_client.models import *
 from dateutil import parser
 
 
