@@ -1,6 +1,7 @@
 """
 EMS API mock data class
 """
+import json
 from logging import getLogger
 from hashlib import md5
 import os.path
@@ -37,4 +38,4 @@ class EMSMockData(object):
             if k not in ignored:
                 normalized[k] = params[k]
 
-        return str(normalized)
+        return json.dumps(normalized, sort_keys=True).encode('ascii', 'ignore')
