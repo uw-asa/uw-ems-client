@@ -1,7 +1,11 @@
 """
 Base module to support exposing EMS SOAP Service methods
 """
+import atexit
 from importlib import import_module
+from shutil import rmtree
+from tempfile import mkdtemp
+
 from django.conf import settings
 from logging import getLogger
 from suds.client import Client
@@ -9,7 +13,6 @@ from suds import WebFault
 from suds.cache import ObjectCache
 from ems_client.mock import EMSMockData
 import sys
-import os
 
 
 def load_object_by_name(object_name):
@@ -29,7 +32,8 @@ class EMSAPI(object):
 
     def __init__(self, options={}):
         self._log = getLogger('ems_client')
-        cache_path = "/tmp/{0}-suds".format(os.getuid())
+        cache_path = mkdtemp(prefix='ems_client-', suffix='-suds')
+        atexit.register(rmtree, cache_path)
         client_opts = {'cache': ObjectCache(cache_path, days=1)}
         if hasattr(settings, 'EMS_API_TRANSPORT_CLASS'):
             transport = load_object_by_name(settings.EMS_API_TRANSPORT_CLASS)
