@@ -9,7 +9,7 @@ from tempfile import mkdtemp
 from django.conf import settings
 from logging import getLogger
 from suds.client import Client
-from suds import WebFault
+from suds import byte_str, WebFault
 from suds.cache import ObjectCache
 from ems_client.mock import EMSMockData
 import sys
@@ -67,4 +67,4 @@ class EMSAPI(object):
     def _mock(self, methodName, params={}):
         reply = EMSMockData().mock(self._port, methodName, params)
         return self._api.service[self._port][methodName](
-            __inject={'reply': reply})
+            __inject={'reply':  byte_str(reply)})
