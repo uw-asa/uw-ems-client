@@ -6,6 +6,7 @@ env:
   - PIP_PKGS="Django"
   - PIP_PKGS="Django==1.8"
 install:
+  - if [ $TRAVIS_PYTHON_VERSION = 2.7 ]; then pip install git+https://github.com/suds-community/suds.git#egg=suds-community ; fi
   - pip install pycodestyle $PIP_PKGS -e .
 script:
   - pycodestyle ems_client
