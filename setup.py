@@ -8,7 +8,7 @@ setup(
         'Django',
         'lxml',
         'python-dateutil',
-        'suds',
+        'suds-community',
     ],
     license='Apache License, Version 2.0',
     test_suite='runtests.runtests',
