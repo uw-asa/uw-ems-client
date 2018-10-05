@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 setup(
     name='ems_client',
     version='0.1',
-    description='EMS client for Django',
+    description='EMS client',
     packages=find_packages(),
     install_requires=[
-        'Django',
+        'commonconf>=0.6',
         'lxml',
         'python-dateutil',
         'suds-community',

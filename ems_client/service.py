@@ -1,9 +1,7 @@
 """
 This module exposes EMS Service methods
 """
-from django.conf import settings
 from ems_client import EMSAPI, EMSAPIException
-from os.path import dirname, normpath, realpath
 from lxml import etree
 from ems_client.models import *
 from dateutil import parser
@@ -11,15 +9,9 @@ from dateutil import parser
 
 class Service(EMSAPI):
     def __init__(self):
-        if hasattr(settings, 'EMS_API_HOST'):
-            wsdl_url = '%s/EMSAPI/Service.asmx?WSDL' % settings.EMS_API_HOST
-        else:
-            wsdl_url = normpath(
-                'file://%s/mock/file/EMSAPI/Service.asmx_WSDL' % (
-                    dirname(realpath(__file__))))
-
-        super(Service, self).__init__({'wsdl': wsdl_url})
-
+        super(Service, self).__init__({
+            'wsdl': 'Service.asmx?WSDL'
+        })
         self._port = 'ServiceSoap'
 
     @staticmethod
@@ -49,7 +41,7 @@ class Service(EMSAPI):
 
     def get_statuses(self):
         data = self._data_from_xml("Statuses", self._request(
-            'GetStatuses'))
+            'GetStatuses', {}))
         statuses = []
         for item in data:
             status = Status()
@@ -63,7 +55,7 @@ class Service(EMSAPI):
 
     def get_event_types(self):
         data = self._data_from_xml("EventTypes", self._request(
-            'GetEventTypes'))
+            'GetEventTypes', {}))
         event_types = []
         for item in data:
             event_type = EventType()
@@ -93,7 +85,7 @@ class Service(EMSAPI):
 
     def get_buildings(self):
         data = self._data_from_xml("Buildings", self._request(
-            'GetBuildings'))
+            'GetBuildings', {}))
         buildings = []
         for item in data:
             building = Building()
