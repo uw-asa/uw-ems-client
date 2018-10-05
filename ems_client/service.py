@@ -49,7 +49,6 @@ class Service(EMSAPI):
             status.id = int(item['ID'])
             status.status_type_id = int(item['StatusTypeID'])
             status.display_on_web = (item['DisplayOnWeb'] == 'true')
-            status.save()
             statuses.append(status)
         return statuses
 
@@ -62,7 +61,6 @@ class Service(EMSAPI):
             event_type.description = item['Description']
             event_type.id = int(item['ID'])
             event_type.display_on_web = (item['DisplayOnWeb'] == 'true')
-            event_type.save()
             event_types.append(event_types)
         return event_types
 

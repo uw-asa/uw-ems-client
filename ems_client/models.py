@@ -1,4 +1,4 @@
-from django.db import models
+from restclients_core import models
 
 # Create your models here.
 

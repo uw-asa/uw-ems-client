@@ -2,12 +2,11 @@ language: python
 python:
   - "2.7"
   - "3.7-dev"
-env:
-  - PIP_PKGS="Django"
-  - PIP_PKGS="Django==1.8"
 install:
   - if [ $TRAVIS_PYTHON_VERSION = 2.7 ]; then pip install git+https://github.com/suds-community/suds.git#egg=suds-community ; fi
-  - pip install pycodestyle $PIP_PKGS -e .
+  - if [ $TRAVIS_PYTHON_VERSION = 2.7 ]; then pip install 'commonconf<1.0' ; fi
+  - pip install -e .
+  - pip install pycodestyle nose2 coverage python-coveralls
 script:
   - pycodestyle ems_client
-  - python runtests.py
+  - coverage run ems_client/test.py -v

@@ -3,17 +3,19 @@ Base module to support exposing EMS SOAP Service methods
 """
 import atexit
 from importlib import import_module
+from logging import getLogger
+from os.path import dirname, realpath
 from shutil import rmtree
+import sys
 from tempfile import mkdtemp
 
 from commonconf import settings
-from logging import getLogger
-from os.path import dirname, realpath
+from restclients_core.util.mock import convert_to_platform_safe
 from suds.client import Client
-from suds import WebFault
+from suds import byte_str, WebFault
 from suds.cache import ObjectCache
-from ems_client.mock import EMSMockData
-import sys
+
+from .mock import EMSMockData
 
 
 def load_object_by_name(object_name):
@@ -42,8 +44,7 @@ class EMSAPI(object):
         else:
             self._wsdl = 'file://%s/resources/ems/file/%s/%s' % (
                 dirname(realpath(__file__)), url_base,
-                EMSMockData().convert_to_platform_safe(
-                    options.get('wsdl', '')))
+                convert_to_platform_safe(options.get('wsdl', '')))
             self._data = self._mock
 
         self._log = getLogger('ems_client')
@@ -90,6 +91,7 @@ class EMSAPI(object):
 
     def _mock(self, methodName, params={}):
         params['__inject'] = {
-            'reply': EMSMockData().mock(self._port, methodName, params)
+            'reply': byte_str(EMSMockData().mock(
+                self._port, methodName, params))
         }
         return self._api.service[self._port][methodName](**params)

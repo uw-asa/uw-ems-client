@@ -9,6 +9,7 @@ setup(
         'lxml',
         'python-dateutil',
         'suds-community',
+        'UW-RestClients-Core',
     ],
     license='Apache License, Version 2.0',
     test_suite='runtests.runtests',

@@ -1,27 +1,31 @@
 """
 EMS API mock data class
 """
-from commonconf import settings
+from hashlib import md5
 from importlib import import_module
 import json
 from logging import getLogger
-from hashlib import md5
+from six import string_types
 import sys
 import os
 import re
-from os.path import abspath, dirname
+
+from commonconf import settings
+from restclients_core.util.mock import convert_to_platform_safe
 
 
 class EMSMockData(object):
-    # Based on django.template.loaders.app_directories
-    fs_encoding = sys.getfilesystemencoding() or sys.getdefaultencoding()
     app_resource_dirs = []
 
     def __init__(self):
         self._log = getLogger(__name__)
 
         if len(EMSMockData.app_resource_dirs) < 1:
-            for app in getattr(settings, 'INSTALLED_APPS', []):
+            apps = getattr(settings, 'INSTALLED_APPS', [])
+            if isinstance(apps, string_types):
+                apps = [v.strip() for v in apps.split(',')]
+
+            for app in apps:
                 try:
                     mod = import_module(app)
                 except ImportError as ex:
@@ -33,8 +37,7 @@ class EMSMockData(object):
                 if os.path.isdir(resource_dir):
                     # Cheating, to make sure our resources are overridable
                     data = {
-                        'path': resource_dir.decode(
-                            EMSMockData.fs_encoding),
+                        'path': resource_dir,
                         'app': app,
                     }
                     EMSMockData.app_resource_dirs.insert(0, data)
@@ -52,7 +55,7 @@ class EMSMockData(object):
         orig_file_path = os.path.join(resource_dir['path'], resource_path)
 
         paths = [
-            self.convert_to_platform_safe(orig_file_path),
+            convert_to_platform_safe(orig_file_path),
         ]
 
         file_path = None
@@ -86,10 +89,3 @@ class EMSMockData(object):
                 normalized[k] = params[k]
 
         return json.dumps(normalized, sort_keys=True).encode('ascii', 'ignore')
-
-    def convert_to_platform_safe(self, dir_file_name):
-        """
-        :param dir_file_name: a string to be processed
-        :return: a string with all the reserved characters replaced
-        """
-        return re.sub(r'[\?|<>=:*,;+&"@]', '_', dir_file_name)
