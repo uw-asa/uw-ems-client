@@ -75,8 +75,8 @@ class Booking(models.Model):
     status = models.ForeignKey(Status, on_delete=models.PROTECT)
     status_type_id = models.SmallIntegerField(
         choices=Status.STATUS_TYPE_CHOICES)
-    date_added = models.DateTimeField()
-    date_changed = models.DateTimeField()
+    date_added = models.DateTimeField(null=True)
+    date_changed = models.DateTimeField(null=True)
 
 
 class ServiceOrderDetail(models.Model):

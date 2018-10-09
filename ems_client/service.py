@@ -118,6 +118,39 @@ class Service(EMSAPI):
             details.append(detail)
         return details
 
+    def get_booking(self, booking_id):
+        data = self._data_from_xml("Booking", self._request(
+            'GetBooking', {
+                'BookingID': booking_id,
+            }))
+        item = data.pop()
+        booking = Booking()
+        booking.booking_date = parser.parse(item['BookingDate']).date()
+        booking.room_description = item['RoomDescription']
+        booking.time_event_start = parser.parse(item['TimeEventStart']) \
+            if item.get('TimeEventStart') else None
+        booking.time_event_end = parser.parse(item['TimeEventEnd']) \
+            if item.get('TimeEventEnd') else None
+        booking.group_name = item['GroupName']
+        booking.event_name = item['EventName']
+        booking.reservation_id = int(item['ReservationID'])
+        booking.event_type_description = item['EventTypeDescription']
+        booking.id = int(item['BookingID'])
+        booking.building_id = int(item['BuildingID'])
+        booking.time_booking_start = \
+            parser.parse(item['TimeBookingStart']) \
+            if item.get('TimeBookingStart') else None
+        booking.time_booking_end = parser.parse(item['TimeBookingEnd']) \
+            if item.get('TimeBookingEnd') else None
+        booking.building_code = item['BuildingCode']
+        booking.dv_building = item['Building']
+        booking.room_code = item['RoomCode']
+        booking.dv_room = item['Room']
+        booking.room_id = int(item['RoomID'])
+        booking.status_id = int(item['StatusID'])
+        booking.status_type_id = int(item['StatusTypeID'])
+        return booking
+
     def get_bookings(self, start_date, end_date,
                      statuses=None, event_types=None):
         params = {

@@ -13,6 +13,12 @@ class ServiceTests(TestCase):
         self.assertGreaterEqual(version["Version"], "1.1.32.0", "API version")
         self.assertTrue(version["License"] in ["Basic", "Advanced"])
 
+    def test_booking(self):
+        booking = self._api.get_booking(8152)
+        self.assertEquals(booking.event_name, 'Joe & Harold Wedding Reception')
+        booking = self._api.get_booking(8806)
+        self.assertEquals(booking.event_name, 'Test')
+
     def test_bookings(self):
         bookings = self._api.get_bookings('2016-01-01', '2016-01-01')
         self.assertGreaterEqual(len(bookings), 1)
