@@ -120,14 +120,17 @@ class Service(EMSAPI):
 
     def get_bookings(self, start_date, end_date,
                      statuses=None, event_types=None):
-        data = self._data_from_xml("Bookings", self._request(
-            'GetBookings', {
+        params = {
                 'StartDate': start_date,
                 'EndDate': end_date,
-                'Statuses': {'int': statuses},
-                'EventTypes': {'int': event_types},
                 'ViewComboRoomComponents': True,
-            }))
+            }
+        if statuses is not None:
+            params['Statuses'] = {'int': statuses}
+        if event_types is not None:
+            params['EventTypes'] = {'int': event_types}
+        data = self._data_from_xml("Bookings", self._request(
+            'GetBookings', params))
         bookings = []
         for item in data:
             booking = Booking()
