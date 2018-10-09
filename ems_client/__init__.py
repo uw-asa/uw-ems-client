@@ -39,7 +39,7 @@ class EMSAPI(object):
     def __init__(self, options={}):
         if hasattr(settings, 'EMS_API_HOST'):
             self._wsdl = '%s%s/%s' % (
-                self._ems_api_server, url_base, options.get('wsdl', ''))
+                settings.EMS_API_HOST, url_base, options.get('wsdl', ''))
             self._data = self._live
         else:
             self._wsdl = 'file://%s/resources/ems/file/%s/%s' % (
