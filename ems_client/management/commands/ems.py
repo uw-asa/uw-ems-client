@@ -1,7 +1,8 @@
-from django.core.management.base import BaseCommand
-from ems_client.service import Service
 from optparse import make_option
 from string import split
+
+from django.core.management.base import BaseCommand
+from ems_client.service import Service
 
 
 class Command(BaseCommand):

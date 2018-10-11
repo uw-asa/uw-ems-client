@@ -1,10 +1,10 @@
 """
 This module exposes EMS Service methods
 """
-from ems_client import EMSAPI, EMSAPIException
-from lxml import etree
-from ems_client.models import *
 from dateutil import parser
+from ems_client import EMSAPI, EMSAPIException
+from ems_client.models import *
+from lxml import etree
 
 
 class Service(EMSAPI):
