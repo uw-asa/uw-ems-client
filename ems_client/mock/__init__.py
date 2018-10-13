@@ -1,17 +1,17 @@
 """
 EMS API mock data class
 """
-from hashlib import md5
-from importlib import import_module
 import json
-from logging import getLogger
-from six import string_types
-import sys
 import os
 import re
+import sys
+from hashlib import md5
+from importlib import import_module
+from logging import getLogger
 
 from commonconf import settings
 from restclients_core.util.mock import convert_to_platform_safe
+from six import string_types
 
 
 class EMSMockData(object):

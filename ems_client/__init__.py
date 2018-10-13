@@ -2,18 +2,18 @@
 Base module to support exposing EMS SOAP Service methods
 """
 import atexit
+import sys
 from importlib import import_module
 from logging import getLogger
 from os.path import dirname, realpath
 from shutil import rmtree
-import sys
 from tempfile import mkdtemp
 
 from commonconf import settings
 from restclients_core.util.mock import convert_to_platform_safe
-from suds.client import Client
-from suds import byte_str, WebFault
+from suds import WebFault, byte_str
 from suds.cache import ObjectCache
+from suds.client import Client
 
 from .mock import EMSMockData
 
