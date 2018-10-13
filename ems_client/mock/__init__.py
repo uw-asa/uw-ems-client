@@ -3,8 +3,6 @@ EMS API mock data class
 """
 import json
 import os
-import re
-import sys
 from hashlib import md5
 from importlib import import_module
 from logging import getLogger
