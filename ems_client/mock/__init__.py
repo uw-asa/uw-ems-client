@@ -29,7 +29,7 @@ class EMSMockData(object):
                 try:
                     mod = import_module(app)
                 except ImportError as ex:
-                    raise ImproperlyConfigured('ImportError %s: %s' % (
+                    raise Exception('ImportError %s: %s' % (
                         app, ex.args[0]))
 
                 resource_dir = os.path.join(os.path.dirname(mod.__file__),
