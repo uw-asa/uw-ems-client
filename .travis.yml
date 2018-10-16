@@ -1,12 +1,30 @@
+sudo: false
 language: python
 python:
-  - "2.7"
-  - "3.7-dev"
-install:
-  - if [ $TRAVIS_PYTHON_VERSION = 2.7 ]; then pip install git+https://github.com/suds-community/suds.git#egg=suds-community ; fi
-  - if [ $TRAVIS_PYTHON_VERSION = 2.7 ]; then pip install 'commonconf<1.0' ; fi
-  - pip install -e .
-  - pip install pycodestyle nose2 coverage python-coveralls
+- '2.7'
+- '3.5'
+before_script:
+- if [ $TRAVIS_PYTHON_VERSION = 2.7 ]; then pip install git+https://github.com/suds-community/suds.git#egg=suds-community ; fi
+- if [ $TRAVIS_PYTHON_VERSION = 2.7 ]; then pip install 'commonconf<1.0' ; fi
+- pip install -e .
+- pip install pycodestyle
+- pip install nose2
+- pip install coverage
+- pip install coveralls
 script:
-  - pycodestyle ems_client
-  - coverage run ems_client/test.py -v
+- pycodestyle ems_client
+- coverage run ems_client/test.py -v
+after_script:
+- coveralls
+before_deploy:
+- find ems_client/ -name \*.pyc -exec rm {} \;
+- echo $TRAVIS_TAG > ems_client/VERSION
+deploy:
+  provider: pypi
+  user: bradleyb
+  skip_cleanup: true
+  password:
+    secure: MVSYfaxEdIQTyHPL29F/OGuoaBStoUibuUQHrEWmkCEMWvNxH6hg7UR4iAJTq+FPmyo0PTXGhaFdmup7F0AQ6vGk+WUkXp2kNG9n8dFYr9JVJ22X1M4XlAal3BVQBgRPkIxraxe6ogaUCfhmwSYzJs2RIkdbAuEPvUGNEjS2/T/ZEFuHmNb5IGzHgSH6FSz1fAC3YW71BP9EDNd1H56U6DrycurXdfzpFNKcsn2Rb98UiKwA/7RKVCeskWUBNdyLSl267oy2bJ+Tk43K/t/GeaTWnpI5CjbKNHSajGXyv9gvCmjKOlz6UPiaBGf8rFBMg19D0kVgAXLSiYmrCAEyNDI/ZQeVmBEUqxZNKyXBDsA1hhACb7OIB64P3bzLKGifZl1xLeerGPhubSChXNQXItl8KQb72369b72YghbnpRvO9DsdNPrSiQh8NVEGgErUHg1wBK2PkYJZE+BhWaWM64WsaUrEuHCMDk0HSSEnqxq7UE/7aVEtS2wZzeT4RAqJQ9TkN7A2rya2cVYejk0vtpV8oNmVe+mwpIO3Wk3vxBuSvs3V+kIwh0NnYn8vr+/EcjQSqbh1Iwe+BIWmSC1iiTVaKqn1UJ1L7BD30raKYsgDQ1wRPIlNsh4sQ2ky1Gr7hgQoXttab3TQ9wQnbC8VEv7uHeLiD8wymKsmm4Midmw=
+  on:
+    tags: true
+    python: '2.7'
