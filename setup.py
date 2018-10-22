@@ -35,5 +35,4 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Topic :: Office/Business :: Scheduling',
     ],
-    test_suite='runtests.runtests',
 )
