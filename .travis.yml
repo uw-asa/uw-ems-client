@@ -6,7 +6,8 @@ python:
 - '3.6'
 - '3.7-dev'
 before_script:
-- pip install git+https://github.com/suds-community/suds.git#egg=suds-community
+- if [ $TRAVIS_PYTHON_VERSION = 2.7 ]; then pip install 'suds-community==0.7.1' ; fi
+- if [ $TRAVIS_PYTHON_VERSION != 2.7 ]; then pip install 'suds-community==0.7.0' ; fi
 - if [ $TRAVIS_PYTHON_VERSION = 2.7 ]; then pip install 'commonconf<1.0' ; fi
 - pip install -e .
 - pip install pycodestyle
