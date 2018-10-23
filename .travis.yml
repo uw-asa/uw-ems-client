@@ -6,8 +6,9 @@ python:
 - '3.6'
 - '3.7-dev'
 before_script:
-- if [ $TRAVIS_PYTHON_VERSION = 2.7 ]; then pip install 'suds-community==0.7.1' ; fi
-- if [ $TRAVIS_PYTHON_VERSION != 2.7 ]; then pip install 'suds-community==0.7.0' ; fi
+#- if [ $TRAVIS_PYTHON_VERSION = 2.7 ]; then pip install 'suds-community==0.7.1' ; fi
+#- if [ $TRAVIS_PYTHON_VERSION != 2.7 ]; then pip install 'suds-community==0.7.0' ; fi
+- pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple suds-community
 - if [ $TRAVIS_PYTHON_VERSION = 2.7 ]; then pip install 'commonconf<1.0' ; fi
 - pip install -e .
 - pip install pycodestyle
