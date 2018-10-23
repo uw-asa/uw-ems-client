@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/uw-it-cte/uw-ems-client.svg?branch=master)](https://travis-ci.org/uw-it-cte/uw-ems-client)
+[![Coverage Status](https://coveralls.io/repos/github/uw-it-cte/uw-ems-client/badge.svg)](https://coveralls.io/github/uw-it-cte/uw-ems-client)
+
 UW EMS SOAP API Client
 ===========================
 
