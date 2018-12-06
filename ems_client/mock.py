@@ -2,30 +2,37 @@
 EMS API mock data class
 """
 from hashlib import md5
-from importlib import import_module
 import json
 from logging import getLogger
-from six import string_types
-import sys
-import os
-import re
+from os.path import abspath, dirname, join
 
-from commonconf import settings
 from restclients_core.util.mock import convert_to_platform_safe
 
 
 class EMSMockData(object):
-    paths = [
-        os.path.join(os.path.dirname(__file__), 'resources'),
-    ]
+    paths = []
 
     def __init__(self):
         self._log = getLogger(__name__)
 
+    @classmethod
+    def register_mock_path(cls, path):
+        if path not in EMSMockData.paths:
+            EMSMockData.paths.append(path)
+
+    def get_registered_paths(self):
+        return EMSMockData.paths
+
+    def service_mock_paths(self):
+        return [abspath(join(dirname(__file__), "resources"))]
+
+    def _get_mock_paths(self):
+        return self.get_registered_paths() + self.service_mock_paths()
+
     def mock(self, portName, methodName, params):
         mock_path = self._mock_file_path(portName, methodName, params)
-        for path in EMSMockData.paths:
-            resource = os.path.join(path, 'ems', 'file')
+        for path in self._get_mock_paths():
+            resource = join(path, 'ems', 'file')
             mock_data = self._load_mock_resource_from_path(resource, mock_path)
             if mock_data:
                 return mock_data
@@ -33,7 +40,7 @@ class EMSMockData(object):
         return ''
 
     def _load_mock_resource_from_path(self, resource_dir, resource_path):
-        orig_file_path = os.path.join(resource_dir, resource_path)
+        orig_file_path = join(resource_dir, resource_path)
 
         paths = [
             convert_to_platform_safe(orig_file_path),
@@ -57,8 +64,8 @@ class EMSMockData(object):
         return mock_data
 
     def _mock_file_path(self, portName, methodName, params):
-        return os.path.join(portName, methodName,
-                            md5(self._normalize(params)).hexdigest().upper())
+        return join(portName, methodName,
+                    md5(self._normalize(params)).hexdigest().upper())
 
     def _normalize(self, params):
         ignored = ['auth']
