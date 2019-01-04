@@ -2,9 +2,11 @@
 This module exposes EMS Service methods
 """
 from dateutil import parser
+from lxml import etree
+from pytz import timezone
+
 from ems_client import EMSAPI, EMSAPIException
 from ems_client.models import *
-from lxml import etree
 
 
 class Service(EMSAPI):
@@ -90,6 +92,8 @@ class Service(EMSAPI):
             building.description = item['Description']
             building.building_code = item['BuildingCode']
             building.id = int(item['ID'])
+            building.time_zone_description = item['TimeZoneDescription']
+            building.time_zone_abbreviation = item['TimeZoneAbbreviation']
             buildings.append(building)
         return buildings
 
@@ -142,6 +146,7 @@ class Service(EMSAPI):
             if item.get('TimeBookingStart') else None
         booking.time_booking_end = parser.parse(item['TimeBookingEnd']) \
             if item.get('TimeBookingEnd') else None
+        booking.time_zone = item['TimeZone']
         booking.building_code = item['BuildingCode']
         booking.dv_building = item['Building']
         booking.room_code = item['RoomCode']
@@ -184,6 +189,7 @@ class Service(EMSAPI):
                 if item.get('TimeBookingStart') else None
             booking.time_booking_end = parser.parse(item['TimeBookingEnd']) \
                 if item.get('TimeBookingEnd') else None
+            booking.time_zone = item['TimeZone']
             booking.building_code = item['BuildingCode']
             booking.dv_building = item['Building']
             booking.room_code = item['RoomCode']
