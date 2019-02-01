@@ -1,9 +1,9 @@
 """
 This module exposes EMS Service methods
 """
-from dateutil import parser
+from dateutil.parser import parse
+from dateutil.tz import gettz
 from lxml import etree
-from pytz import timezone
 
 from ems_client import EMSAPI, EMSAPIException
 from ems_client.models import *
@@ -15,6 +15,9 @@ class Service(EMSAPI):
             'wsdl': 'Service.asmx?WSDL'
         })
         self._port = 'ServiceSoap'
+        self.tzinfos = {
+            'PT': gettz("America/Los Angeles"),
+        }
 
     @staticmethod
     def _data_from_xml(data_type, xml):
@@ -106,12 +109,14 @@ class Service(EMSAPI):
         details = []
         for item in data:
             detail = ServiceOrderDetail()
-            detail.booking_date = parser.parse(item['BookingDate']).date()
+            detail.booking_date = parse(item['BookingDate']).date()
             detail.service_order_start_time = \
-                parser.parse(item['ServiceOrderStartTime']).time() \
+                parse(item['ServiceOrderStartTime'] + ' ' + item['TimeZone'],
+                      tzinfos=self.tzinfos).time() \
                 if item.get('ServiceOrderStartTime') else None
             detail.service_order_end_time = \
-                parser.parse(item['ServiceOrderEndTime']).time() \
+                parse(item['ServiceOrderEndTime'] + ' ' + item['TimeZone'],
+                      tzinfos=self.tzinfos).time() \
                 if item.get('ServiceOrderEndTime') else None
             detail.resource_description = item['ResourceDescription']
             detail.resource_external_reference = \
@@ -129,11 +134,15 @@ class Service(EMSAPI):
             }))
         item = data.pop()
         booking = Booking()
-        booking.booking_date = parser.parse(item['BookingDate']).date()
+        booking.booking_date = parse(item['BookingDate']).date()
         booking.room_description = item['RoomDescription']
-        booking.time_event_start = parser.parse(item['TimeEventStart']) \
+        booking.time_event_start = \
+            parse(item['TimeEventStart'] + ' ' + item['TimeZone'],
+                  tzinfos=self.tzinfos) \
             if item.get('TimeEventStart') else None
-        booking.time_event_end = parser.parse(item['TimeEventEnd']) \
+        booking.time_event_end = \
+            parse(item['TimeEventEnd'] + ' ' + item['TimeZone'],
+                  tzinfos=self.tzinfos) \
             if item.get('TimeEventEnd') else None
         booking.group_name = item['GroupName']
         booking.event_name = item['EventName']
@@ -142,9 +151,12 @@ class Service(EMSAPI):
         booking.id = int(item['BookingID'])
         booking.building_id = int(item['BuildingID'])
         booking.time_booking_start = \
-            parser.parse(item['TimeBookingStart']) \
+            parse(item['TimeBookingStart'] + ' ' + item['TimeZone'],
+                  tzinfos=self.tzinfos) \
             if item.get('TimeBookingStart') else None
-        booking.time_booking_end = parser.parse(item['TimeBookingEnd']) \
+        booking.time_booking_end = \
+            parse(item['TimeBookingEnd'] + ' ' + item['TimeZone'],
+                  tzinfos=self.tzinfos) \
             if item.get('TimeBookingEnd') else None
         booking.time_zone = item['TimeZone']
         booking.building_code = item['BuildingCode']
@@ -172,11 +184,15 @@ class Service(EMSAPI):
         bookings = []
         for item in data:
             booking = Booking()
-            booking.booking_date = parser.parse(item['BookingDate']).date()
+            booking.booking_date = parse(item['BookingDate']).date()
             booking.room_description = item['RoomDescription']
-            booking.time_event_start = parser.parse(item['TimeEventStart']) \
+            booking.time_event_start = \
+                parse(item['TimeEventStart'] + ' ' + item['TimeZone'],
+                      tzinfos=self.tzinfos) \
                 if item.get('TimeEventStart') else None
-            booking.time_event_end = parser.parse(item['TimeEventEnd']) \
+            booking.time_event_end = \
+                parse(item['TimeEventEnd'] + ' ' + item['TimeZone'],
+                      tzinfos=self.tzinfos) \
                 if item.get('TimeEventEnd') else None
             booking.group_name = item['GroupName']
             booking.event_name = item['EventName']
@@ -185,9 +201,12 @@ class Service(EMSAPI):
             booking.id = int(item['BookingID'])
             booking.building_id = int(item['BuildingID'])
             booking.time_booking_start = \
-                parser.parse(item['TimeBookingStart']) \
+                parse(item['TimeBookingStart'] + ' ' + item['TimeZone'],
+                      tzinfos=self.tzinfos) \
                 if item.get('TimeBookingStart') else None
-            booking.time_booking_end = parser.parse(item['TimeBookingEnd']) \
+            booking.time_booking_end = \
+                parse(item['TimeBookingEnd'] + ' ' + item['TimeZone'],
+                      tzinfos=self.tzinfos) \
                 if item.get('TimeBookingEnd') else None
             booking.time_zone = item['TimeZone']
             booking.building_code = item['BuildingCode']
@@ -197,7 +216,7 @@ class Service(EMSAPI):
             booking.room_id = int(item['RoomID'])
             booking.status_id = int(item['StatusID'])
             booking.status_type_id = int(item['StatusTypeID'])
-            booking.date_added = parser.parse(item['DateAdded'])
-            booking.date_changed = parser.parse(item['DateChanged'])
+            booking.date_added = parse(item['DateAdded'])
+            booking.date_changed = parse(item['DateChanged'])
             bookings.append(booking)
         return bookings
