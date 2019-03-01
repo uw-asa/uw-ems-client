@@ -46,6 +46,7 @@ class Room(models.Model):
     room = models.CharField(max_length=20)
     description = models.CharField(max_length=50)
     dv_building = models.CharField(max_length=50)
+    active = models.BooleanField()
     building = models.ForeignKey(Building, on_delete=models.PROTECT)
     id = models.PositiveIntegerField(primary_key=True)
     external_reference = models.CharField(max_length=255, null=True)

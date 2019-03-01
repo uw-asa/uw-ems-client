@@ -74,6 +74,7 @@ class Service(EMSAPI):
             room = Room()
             room.description = item['Description']
             room.dv_building = item['Building']
+            room.active = True if item['Active'] == 'true' else False
             room.building_id = int(item['BuildingID'])
             room.room = item['Room']
             room.id = int(item['ID'])
