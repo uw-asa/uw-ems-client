@@ -37,6 +37,8 @@ class ServiceTests(TestCase):
     def test_rooms(self):
         rooms = self._api.get_all_rooms()
         self.assertGreaterEqual(len(rooms), 0)
+        active_rooms = list(filter(lambda rm: rm.active, rooms))
+        self.assertEqual(len(active_rooms), 53)
 
     def test_service_orders(self):
         service_orders = self._api.get_service_order_details('2016-01-01',
