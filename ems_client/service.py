@@ -111,12 +111,10 @@ class Service(EMSAPI):
             detail = ServiceOrderDetail()
             detail.booking_date = parse(item['BookingDate']).date()
             detail.service_order_start_time = \
-                parse(item['ServiceOrderStartTime'] + ' ' + item['TimeZone'],
-                      tzinfos=self.tzinfos).time() \
+                parse(item['ServiceOrderStartTime']).time() \
                 if item.get('ServiceOrderStartTime') else None
             detail.service_order_end_time = \
-                parse(item['ServiceOrderEndTime'] + ' ' + item['TimeZone'],
-                      tzinfos=self.tzinfos).time() \
+                parse(item['ServiceOrderEndTime']).time() \
                 if item.get('ServiceOrderEndTime') else None
             detail.resource_description = item['ResourceDescription']
             detail.resource_external_reference = \
