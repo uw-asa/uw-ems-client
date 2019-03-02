@@ -37,6 +37,8 @@ class Building(models.Model):
     description = models.CharField(max_length=50)
     building_code = models.CharField(max_length=20, null=True)
     id = models.PositiveIntegerField(primary_key=True)
+    time_zone_description = models.CharField(max_length=255)
+    time_zone_abbreviation = models.CharField(max_length=10)
 
     def __str__(self):
         return self.description
@@ -68,6 +70,7 @@ class Booking(models.Model):
     building = models.ForeignKey(Building, on_delete=models.PROTECT)
     time_booking_start = models.DateTimeField()
     time_booking_end = models.DateTimeField()
+    time_zone = models.CharField(max_length=10)
     building_code = models.CharField(max_length=20)
     dv_building = models.CharField(max_length=50)
     room_code = models.CharField(max_length=20)
