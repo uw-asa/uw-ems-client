@@ -66,7 +66,7 @@ class Service(EMSAPI):
             event_type.description = item['Description']
             event_type.id = int(item['ID'])
             event_type.display_on_web = (item['DisplayOnWeb'] == 'true')
-            event_types.append(event_types)
+            event_types.append(event_type)
         return event_types
 
     def get_all_rooms(self, building_id=-1):
