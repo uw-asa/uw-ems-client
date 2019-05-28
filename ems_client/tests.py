@@ -27,6 +27,7 @@ class ServiceTests(TestCase):
         self.assertGreaterEqual(len(bookings), 1)
         self.assertEquals(bookings[0].contact, '206-685-9906')
         self.assertEquals(bookings[0].contact_email_address, 'bradleyb@uw.edu')
+        self.assertIsNone(bookings[1].contact_email_address)
         bookings = self._api.get_bookings('2016-01-02', '2016-01-02')
         self.assertGreaterEqual(len(bookings), 1)
         self.assertEquals(bookings[0].contact, 'Harold Jones 555-555-1010')

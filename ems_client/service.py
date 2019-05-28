@@ -219,6 +219,7 @@ class Service(EMSAPI):
             booking.status_type_id = int(item['StatusTypeID'])
             booking.date_added = parse(item['DateAdded'])
             booking.date_changed = parse(item['DateChanged'])
-            booking.contact_email_address = item['ContactEmailAddress']
+            booking.contact_email_address = item.get('ContactEmailAddress',
+                                                     None)
             bookings.append(booking)
         return bookings

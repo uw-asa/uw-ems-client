@@ -82,7 +82,7 @@ class Booking(models.Model):
         choices=Status.STATUS_TYPE_CHOICES)
     date_added = models.DateTimeField(null=True)
     date_changed = models.DateTimeField(null=True)
-    contact_email_address = models.CharField(max_length=75)
+    contact_email_address = models.CharField(max_length=75, null=True)
 
 
 class ServiceOrderDetail(models.Model):
