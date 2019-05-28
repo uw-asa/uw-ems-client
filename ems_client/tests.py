@@ -17,14 +17,21 @@ class ServiceTests(TestCase):
     def test_booking(self):
         booking = self._api.get_booking(8152)
         self.assertEquals(booking.event_name, 'Joe & Harold Wedding Reception')
+        self.assertEquals(booking.contact, 'Harold Jones 555-555-1010')
         booking = self._api.get_booking(8806)
         self.assertEquals(booking.event_name, 'Test')
+        self.assertEquals(booking.contact, '206-685-9906')
 
     def test_bookings(self):
         bookings = self._api.get_bookings('2016-01-01', '2016-01-01')
         self.assertGreaterEqual(len(bookings), 1)
+        self.assertEquals(bookings[0].contact, '206-685-9906')
+        self.assertEquals(bookings[0].contact_email_address, 'bradleyb@uw.edu')
         bookings = self._api.get_bookings('2016-01-02', '2016-01-02')
         self.assertGreaterEqual(len(bookings), 1)
+        self.assertEquals(bookings[0].contact, 'Harold Jones 555-555-1010')
+        self.assertEquals(bookings[0].contact_email_address,
+                          'harold.n.jones@example.com')
 
     def test_buildings(self):
         buildings = self._api.get_buildings()

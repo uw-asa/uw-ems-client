@@ -147,6 +147,7 @@ class Service(EMSAPI):
         booking.event_name = item['EventName']
         booking.reservation_id = int(item['ReservationID'])
         booking.event_type_description = item['EventTypeDescription']
+        booking.contact = item['Contact']
         booking.id = int(item['BookingID'])
         booking.building_id = int(item['BuildingID'])
         booking.time_booking_start = \
@@ -197,6 +198,7 @@ class Service(EMSAPI):
             booking.event_name = item['EventName']
             booking.reservation_id = int(item['ReservationID'])
             booking.event_type_description = item['EventTypeDescription']
+            booking.contact = item['Contact']
             booking.id = int(item['BookingID'])
             booking.building_id = int(item['BuildingID'])
             booking.time_booking_start = \
@@ -217,5 +219,6 @@ class Service(EMSAPI):
             booking.status_type_id = int(item['StatusTypeID'])
             booking.date_added = parse(item['DateAdded'])
             booking.date_changed = parse(item['DateChanged'])
+            booking.contact_email_address = item['ContactEmailAddress']
             bookings.append(booking)
         return bookings

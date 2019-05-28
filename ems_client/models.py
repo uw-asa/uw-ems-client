@@ -66,6 +66,7 @@ class Booking(models.Model):
     event_name = models.CharField(max_length=255)
     reservation_id = models.PositiveIntegerField()
     event_type_description = models.CharField(max_length=30)
+    contact = models.CharField(max_length=113)
     id = models.PositiveIntegerField(primary_key=True)
     building = models.ForeignKey(Building, on_delete=models.PROTECT)
     time_booking_start = models.DateTimeField()
@@ -81,6 +82,7 @@ class Booking(models.Model):
         choices=Status.STATUS_TYPE_CHOICES)
     date_added = models.DateTimeField(null=True)
     date_changed = models.DateTimeField(null=True)
+    contact_email_address = models.CharField(max_length=75)
 
 
 class ServiceOrderDetail(models.Model):
