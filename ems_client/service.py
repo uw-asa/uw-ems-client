@@ -223,3 +223,57 @@ class Service(EMSAPI):
                                                      None)
             bookings.append(booking)
         return bookings
+
+    def get_changed_bookings(self, start_date, end_date,
+                             statuses=None, event_types=None):
+        params = {
+                'StartDate': start_date,
+                'EndDate': end_date,
+                'ViewComboRoomComponents': True,
+            }
+        if statuses is not None:
+            params['Statuses'] = {'int': statuses}
+        if event_types is not None:
+            params['EventTypes'] = {'int': event_types}
+        data = self._data_from_xml("Bookings", self._request(
+            'GetChangedBookings', params))
+        bookings = []
+        for item in data:
+            booking = Booking()
+            booking.booking_date = parse(item['BookingDate']).date()
+            booking.room_description = item['RoomDescription']
+            booking.time_event_start = \
+                parse(item['TimeEventStart'] + ' ' + item['TimeZone'],
+                      tzinfos=self.tzinfos) \
+                if item.get('TimeEventStart') else None
+            booking.time_event_end = \
+                parse(item['TimeEventEnd'] + ' ' + item['TimeZone'],
+                      tzinfos=self.tzinfos) \
+                if item.get('TimeEventEnd') else None
+            booking.group_name = item['GroupName']
+            booking.event_name = item['EventName']
+            booking.reservation_id = int(item['ReservationID'])
+            booking.event_type_description = item['EventTypeDescription']
+            booking.contact = item['Contact']
+            booking.id = int(item['BookingID'])
+            booking.building_id = int(item['BuildingID'])
+            booking.time_booking_start = \
+                parse(item['TimeBookingStart'] + ' ' + item['TimeZone'],
+                      tzinfos=self.tzinfos) \
+                if item.get('TimeBookingStart') else None
+            booking.time_booking_end = \
+                parse(item['TimeBookingEnd'] + ' ' + item['TimeZone'],
+                      tzinfos=self.tzinfos) \
+                if item.get('TimeBookingEnd') else None
+            booking.time_zone = item['TimeZone']
+            booking.building_code = item['BuildingCode']
+            booking.dv_building = item['Building']
+            booking.room_code = item['RoomCode']
+            booking.dv_room = item['Room']
+            booking.room_id = int(item['RoomID'])
+            booking.status_id = int(item['StatusID'])
+            booking.status_type_id = int(item['StatusTypeID'])
+            booking.date_added = parse(item['DateAdded'])
+            booking.date_changed = parse(item['DateChanged'])
+            bookings.append(booking)
+        return bookings

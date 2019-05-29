@@ -1,5 +1,7 @@
 from unittest import TestCase
 
+from dateutil.parser import parse
+
 from ems_client.service import Service
 
 
@@ -33,6 +35,12 @@ class ServiceTests(TestCase):
         self.assertEquals(bookings[0].contact, 'Harold Jones 555-555-1010')
         self.assertEquals(bookings[0].contact_email_address,
                           'harold.n.jones@example.com')
+
+    def test_changed_bookings(self):
+        bookings = self._api.get_changed_bookings('2015-06-23', '2015-06-25')
+        self.assertGreaterEqual(len(bookings), 1)
+        self.assertEquals(bookings[0].date_changed.date(),
+                          parse('2015-06-24').date())
 
     def test_buildings(self):
         buildings = self._api.get_buildings()
