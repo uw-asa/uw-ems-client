@@ -23,6 +23,9 @@ setup(
         'UW-RestClients-Core<1.0 ; python_version<"3"',
         'UW-RestClients-Core ; python_version>="3"',
     ],
+    tests_require=[
+        'pycodestyle',
+    ],
     license='Apache License, Version 2.0',
     description='A client for the EMS SOAP API',
     long_description='README.md',
