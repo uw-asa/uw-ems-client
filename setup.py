@@ -24,6 +24,7 @@ setup(
         'UW-RestClients-Core ; python_version>="3"',
     ],
     tests_require=[
+        'nose2',
         'pycodestyle',
     ],
     license='Apache License, Version 2.0',

@@ -79,6 +79,51 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetBookings2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ReservationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="Buildings" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="Statuses" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventTypes" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="GroupTypes" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="ViewComboRoomComponents" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBookings2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBookings2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBookings3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="Buildings" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="Statuses" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventTypes" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="GroupTypes" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="ViewComboRoomComponents" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBookings3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBookings3Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetHVACBookings">
         <s:complexType>
           <s:sequence>
@@ -126,6 +171,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetChangedBookingsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBookingHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="Rooms" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="Statuses" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventTypes" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="GroupTypes" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="ViewComboRoomComponents" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBookingHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBookingHistoryResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -760,6 +827,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="WebSecurityTemplateID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="WebProcessTemplates" type="tns:ArrayOfInt" />
             <s:element minOccurs="0" maxOccurs="1" name="Groups" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="Validated" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -803,6 +871,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="WebSecurityTemplateID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="WebProcessTemplates" type="tns:ArrayOfInt" />
             <s:element minOccurs="0" maxOccurs="1" name="Groups" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="Validated" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1085,42 +1154,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="UpdateCheckInStatus">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="CheckIn" type="s:boolean" />
-            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="BuildingID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="CheckInOutDate" type="s:dateTime" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="UpdateCheckInStatusResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="UpdateCheckInStatusResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetCheckInStatus">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="CheckInDate" type="s:dateTime" />
-            <s:element minOccurs="0" maxOccurs="1" name="Groups" type="tns:ArrayOfInt" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetCheckInStatusResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetCheckInStatusResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="GetBookingCheckIn">
         <s:complexType>
           <s:sequence>
@@ -1209,6 +1242,25 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetServiceOrderDetails2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceOrderDetailNotes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="A_0" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="A_1" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="A_2" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="A_3" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="A_4" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="A_5" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceOrderDetailNotesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceOrderDetailNotesResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1430,6 +1482,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetUDFs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUDFsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUDFsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="UpdateUDF">
         <s:complexType>
           <s:sequence>
@@ -1444,6 +1513,262 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="UpdateUDFResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategories">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="BuildingID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCategoriesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoryStates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoryStatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCategoryStatesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResources">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResourcesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResourcesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPricingMethods">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPricingMethodsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPricingMethodsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddServiceOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="BookingID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TimeStart" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="TimeEnd" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceTypeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="StateID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="EstimatedCount" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="GuaranteedCount" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ActualCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddServiceOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddServiceOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddServiceOrderDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceOrderID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ResourceID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="PricingMethodID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="UnitPrice" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SpecialInstructions" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddServiceOrderDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddServiceOrderDetailResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateServiceOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceOrderID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TimeStart" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="TimeEnd" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="StateID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceTypeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="EstimatedCount" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="GuaranteedCount" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ActualCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateServiceOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateServiceOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateServiceOrderDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceOrderDetailID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ResourceID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="PricingMethodID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="UnitPrice" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SpecialInstructions" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateServiceOrderDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateServiceOrderDetailResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteServiceOrderDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceOrderDetailID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteServiceOrderDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteServiceOrderDetailResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteServiceOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceOrderID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteServiceOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteServiceOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddReservation5">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RoomID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="BookingDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StatusID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="EventTypeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="WebUserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="WebTemplateID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ReservationSourceID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="BillingReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PONumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SetupCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddReservation5Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddReservation5Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateBilling">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BillingReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PONumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateBillingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateBillingResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AutoCheckin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="WebUserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="UDFID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UDFValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="BuildingID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RoomID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="FloorID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="BookingDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EventType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AutoCheckinResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AutoCheckinResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1473,6 +1798,18 @@
   <wsdl:message name="GetBookingsSoapOut">
     <wsdl:part name="parameters" element="tns:GetBookingsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetBookings2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetBookings2" />
+  </wsdl:message>
+  <wsdl:message name="GetBookings2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetBookings2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetBookings3SoapIn">
+    <wsdl:part name="parameters" element="tns:GetBookings3" />
+  </wsdl:message>
+  <wsdl:message name="GetBookings3SoapOut">
+    <wsdl:part name="parameters" element="tns:GetBookings3Response" />
+  </wsdl:message>
   <wsdl:message name="GetHVACBookingsSoapIn">
     <wsdl:part name="parameters" element="tns:GetHVACBookings" />
   </wsdl:message>
@@ -1484,6 +1821,12 @@
   </wsdl:message>
   <wsdl:message name="GetChangedBookingsSoapOut">
     <wsdl:part name="parameters" element="tns:GetChangedBookingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBookingHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetBookingHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetBookingHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetBookingHistoryResponse" />
   </wsdl:message>
   <wsdl:message name="GetAllRoomBookingsSoapIn">
     <wsdl:part name="parameters" element="tns:GetAllRoomBookings" />
@@ -1773,18 +2116,6 @@
   <wsdl:message name="AddPaymentSoapOut">
     <wsdl:part name="parameters" element="tns:AddPaymentResponse" />
   </wsdl:message>
-  <wsdl:message name="UpdateCheckInStatusSoapIn">
-    <wsdl:part name="parameters" element="tns:UpdateCheckInStatus" />
-  </wsdl:message>
-  <wsdl:message name="UpdateCheckInStatusSoapOut">
-    <wsdl:part name="parameters" element="tns:UpdateCheckInStatusResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetCheckInStatusSoapIn">
-    <wsdl:part name="parameters" element="tns:GetCheckInStatus" />
-  </wsdl:message>
-  <wsdl:message name="GetCheckInStatusSoapOut">
-    <wsdl:part name="parameters" element="tns:GetCheckInStatusResponse" />
-  </wsdl:message>
   <wsdl:message name="GetBookingCheckInSoapIn">
     <wsdl:part name="parameters" element="tns:GetBookingCheckIn" />
   </wsdl:message>
@@ -1814,6 +2145,12 @@
   </wsdl:message>
   <wsdl:message name="GetServiceOrderDetails2SoapOut">
     <wsdl:part name="parameters" element="tns:GetServiceOrderDetails2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceOrderDetailNotesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceOrderDetailNotes" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceOrderDetailNotesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceOrderDetailNotesResponse" />
   </wsdl:message>
   <wsdl:message name="GetWebSecurityTemplateRolesSoapIn">
     <wsdl:part name="parameters" element="tns:GetWebSecurityTemplateRoles" />
@@ -1893,11 +2230,95 @@
   <wsdl:message name="AddUDFSoapOut">
     <wsdl:part name="parameters" element="tns:AddUDFResponse" />
   </wsdl:message>
+  <wsdl:message name="GetUDFsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUDFs" />
+  </wsdl:message>
+  <wsdl:message name="GetUDFsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUDFsResponse" />
+  </wsdl:message>
   <wsdl:message name="UpdateUDFSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateUDF" />
   </wsdl:message>
   <wsdl:message name="UpdateUDFSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateUDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryStatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCategoryStates" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryStatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCategoryStatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetResourcesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetResources" />
+  </wsdl:message>
+  <wsdl:message name="GetResourcesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetResourcesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPricingMethodsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPricingMethods" />
+  </wsdl:message>
+  <wsdl:message name="GetPricingMethodsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPricingMethodsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddServiceOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:AddServiceOrder" />
+  </wsdl:message>
+  <wsdl:message name="AddServiceOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:AddServiceOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddServiceOrderDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:AddServiceOrderDetail" />
+  </wsdl:message>
+  <wsdl:message name="AddServiceOrderDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:AddServiceOrderDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateServiceOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateServiceOrder" />
+  </wsdl:message>
+  <wsdl:message name="UpdateServiceOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateServiceOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateServiceOrderDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateServiceOrderDetail" />
+  </wsdl:message>
+  <wsdl:message name="UpdateServiceOrderDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateServiceOrderDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteServiceOrderDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteServiceOrderDetail" />
+  </wsdl:message>
+  <wsdl:message name="DeleteServiceOrderDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteServiceOrderDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteServiceOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteServiceOrder" />
+  </wsdl:message>
+  <wsdl:message name="DeleteServiceOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteServiceOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddReservation5SoapIn">
+    <wsdl:part name="parameters" element="tns:AddReservation5" />
+  </wsdl:message>
+  <wsdl:message name="AddReservation5SoapOut">
+    <wsdl:part name="parameters" element="tns:AddReservation5Response" />
+  </wsdl:message>
+  <wsdl:message name="ValidateBillingSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateBilling" />
+  </wsdl:message>
+  <wsdl:message name="ValidateBillingSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateBillingResponse" />
+  </wsdl:message>
+  <wsdl:message name="AutoCheckinSoapIn">
+    <wsdl:part name="parameters" element="tns:AutoCheckin" />
+  </wsdl:message>
+  <wsdl:message name="AutoCheckinSoapOut">
+    <wsdl:part name="parameters" element="tns:AutoCheckinResponse" />
   </wsdl:message>
   <wsdl:portType name="ServiceSoap">
     <wsdl:operation name="GetAPIVersion">
@@ -1916,6 +2337,14 @@
       <wsdl:input message="tns:GetBookingsSoapIn" />
       <wsdl:output message="tns:GetBookingsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetBookings2">
+      <wsdl:input message="tns:GetBookings2SoapIn" />
+      <wsdl:output message="tns:GetBookings2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBookings3">
+      <wsdl:input message="tns:GetBookings3SoapIn" />
+      <wsdl:output message="tns:GetBookings3SoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetHVACBookings">
       <wsdl:input message="tns:GetHVACBookingsSoapIn" />
       <wsdl:output message="tns:GetHVACBookingsSoapOut" />
@@ -1923,6 +2352,10 @@
     <wsdl:operation name="GetChangedBookings">
       <wsdl:input message="tns:GetChangedBookingsSoapIn" />
       <wsdl:output message="tns:GetChangedBookingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBookingHistory">
+      <wsdl:input message="tns:GetBookingHistorySoapIn" />
+      <wsdl:output message="tns:GetBookingHistorySoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetAllRoomBookings">
       <wsdl:input message="tns:GetAllRoomBookingsSoapIn" />
@@ -2116,14 +2549,6 @@
       <wsdl:input message="tns:AddPaymentSoapIn" />
       <wsdl:output message="tns:AddPaymentSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateCheckInStatus">
-      <wsdl:input message="tns:UpdateCheckInStatusSoapIn" />
-      <wsdl:output message="tns:UpdateCheckInStatusSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetCheckInStatus">
-      <wsdl:input message="tns:GetCheckInStatusSoapIn" />
-      <wsdl:output message="tns:GetCheckInStatusSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetBookingCheckIn">
       <wsdl:input message="tns:GetBookingCheckInSoapIn" />
       <wsdl:output message="tns:GetBookingCheckInSoapOut" />
@@ -2143,6 +2568,10 @@
     <wsdl:operation name="GetServiceOrderDetails2">
       <wsdl:input message="tns:GetServiceOrderDetails2SoapIn" />
       <wsdl:output message="tns:GetServiceOrderDetails2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceOrderDetailNotes">
+      <wsdl:input message="tns:GetServiceOrderDetailNotesSoapIn" />
+      <wsdl:output message="tns:GetServiceOrderDetailNotesSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetWebSecurityTemplateRoles">
       <wsdl:input message="tns:GetWebSecurityTemplateRolesSoapIn" />
@@ -2196,9 +2625,65 @@
       <wsdl:input message="tns:AddUDFSoapIn" />
       <wsdl:output message="tns:AddUDFSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetUDFs">
+      <wsdl:input message="tns:GetUDFsSoapIn" />
+      <wsdl:output message="tns:GetUDFsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateUDF">
       <wsdl:input message="tns:UpdateUDFSoapIn" />
       <wsdl:output message="tns:UpdateUDFSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <wsdl:input message="tns:GetCategoriesSoapIn" />
+      <wsdl:output message="tns:GetCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryStates">
+      <wsdl:input message="tns:GetCategoryStatesSoapIn" />
+      <wsdl:output message="tns:GetCategoryStatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResources">
+      <wsdl:input message="tns:GetResourcesSoapIn" />
+      <wsdl:output message="tns:GetResourcesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPricingMethods">
+      <wsdl:input message="tns:GetPricingMethodsSoapIn" />
+      <wsdl:output message="tns:GetPricingMethodsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddServiceOrder">
+      <wsdl:input message="tns:AddServiceOrderSoapIn" />
+      <wsdl:output message="tns:AddServiceOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddServiceOrderDetail">
+      <wsdl:input message="tns:AddServiceOrderDetailSoapIn" />
+      <wsdl:output message="tns:AddServiceOrderDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateServiceOrder">
+      <wsdl:input message="tns:UpdateServiceOrderSoapIn" />
+      <wsdl:output message="tns:UpdateServiceOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateServiceOrderDetail">
+      <wsdl:input message="tns:UpdateServiceOrderDetailSoapIn" />
+      <wsdl:output message="tns:UpdateServiceOrderDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteServiceOrderDetail">
+      <wsdl:input message="tns:DeleteServiceOrderDetailSoapIn" />
+      <wsdl:output message="tns:DeleteServiceOrderDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteServiceOrder">
+      <wsdl:input message="tns:DeleteServiceOrderSoapIn" />
+      <wsdl:output message="tns:DeleteServiceOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddReservation5">
+      <wsdl:input message="tns:AddReservation5SoapIn" />
+      <wsdl:output message="tns:AddReservation5SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateBilling">
+      <wsdl:input message="tns:ValidateBillingSoapIn" />
+      <wsdl:output message="tns:ValidateBillingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AutoCheckin">
+      <wsdl:input message="tns:AutoCheckinSoapIn" />
+      <wsdl:output message="tns:AutoCheckinSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
@@ -2239,6 +2724,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetBookings2">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetBookings2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookings3">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetBookings3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetHVACBookings">
       <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetHVACBookings" style="document" />
       <wsdl:input>
@@ -2250,6 +2753,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetChangedBookings">
       <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetChangedBookings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookingHistory">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetBookingHistory" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2689,24 +3201,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateCheckInStatus">
-      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/UpdateCheckInStatus" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCheckInStatus">
-      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetCheckInStatus" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetBookingCheckIn">
       <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetBookingCheckIn" style="document" />
       <wsdl:input>
@@ -2745,6 +3239,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetServiceOrderDetails2">
       <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetServiceOrderDetails2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceOrderDetailNotes">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetServiceOrderDetailNotes" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2869,8 +3372,134 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUDFs">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetUDFs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateUDF">
       <soap:operation soapAction="http://DEA.EMS.API.Web.Service/UpdateUDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryStates">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetCategoryStates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResources">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetResources" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPricingMethods">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/GetPricingMethods" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddServiceOrder">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/AddServiceOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddServiceOrderDetail">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/AddServiceOrderDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateServiceOrder">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/UpdateServiceOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateServiceOrderDetail">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/UpdateServiceOrderDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteServiceOrderDetail">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/DeleteServiceOrderDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteServiceOrder">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/DeleteServiceOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddReservation5">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/AddReservation5" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateBilling">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/ValidateBilling" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutoCheckin">
+      <soap:operation soapAction="http://DEA.EMS.API.Web.Service/AutoCheckin" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2917,6 +3546,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetBookings2">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetBookings2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookings3">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetBookings3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetHVACBookings">
       <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetHVACBookings" style="document" />
       <wsdl:input>
@@ -2928,6 +3575,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetChangedBookings">
       <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetChangedBookings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookingHistory">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetBookingHistory" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3367,24 +4023,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateCheckInStatus">
-      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/UpdateCheckInStatus" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCheckInStatus">
-      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetCheckInStatus" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetBookingCheckIn">
       <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetBookingCheckIn" style="document" />
       <wsdl:input>
@@ -3423,6 +4061,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetServiceOrderDetails2">
       <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetServiceOrderDetails2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceOrderDetailNotes">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetServiceOrderDetailNotes" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3547,8 +4194,134 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUDFs">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetUDFs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateUDF">
       <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/UpdateUDF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryStates">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetCategoryStates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResources">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetResources" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPricingMethods">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/GetPricingMethods" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddServiceOrder">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/AddServiceOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddServiceOrderDetail">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/AddServiceOrderDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateServiceOrder">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/UpdateServiceOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateServiceOrderDetail">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/UpdateServiceOrderDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteServiceOrderDetail">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/DeleteServiceOrderDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteServiceOrder">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/DeleteServiceOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddReservation5">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/AddReservation5" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateBilling">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/ValidateBilling" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutoCheckin">
+      <soap12:operation soapAction="http://DEA.EMS.API.Web.Service/AutoCheckin" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3559,10 +4332,10 @@
   </wsdl:binding>
   <wsdl:service name="Service">
     <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
-      <soap:address location="https://localhost/EMSAPI/Service.asmx" />
+      <soap:address location="https://cte-ems-01.cte.uw.edu/EMSAPI/Service.asmx" />
     </wsdl:port>
     <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
-      <soap12:address location="https://localhost/EMSAPI/Service.asmx" />
+      <soap12:address location="https://cte-ems-01.cte.uw.edu/EMSAPI/Service.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

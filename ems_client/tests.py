@@ -47,6 +47,14 @@ class ServiceTests(TestCase):
         self.assertEquals(bookings[0].contact_email_address,
                           'harold.n.jones@example.com')
 
+    def test_bookings2(self):
+        bookings = self._api.get_bookings2(439, '2016-01-01', '2016-01-01')
+        self.assertEquals(len(bookings), 1)
+        self.assertEquals(bookings[0].contact, '206-685-9906')
+        self.assertEquals(bookings[0].contact_email_address, 'bradleyb@uw.edu')
+        bookings = self._api.get_bookings2(439, '2016-01-02', '2016-01-02')
+        self.assertEquals(len(bookings), 0)
+
     def test_changed_bookings(self):
         bookings = self._api.get_changed_bookings('2015-06-23', '2015-06-25')
         self.assertGreaterEqual(len(bookings), 1)
